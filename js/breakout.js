@@ -10,6 +10,9 @@ var leftPressed = false;
 var dx = 2
 var dy = -2
 
+// Add lives to the game
+var Lives = 3
+
 //Counting the score
 var score = 0;
 
@@ -93,6 +96,10 @@ function draw() {
 	drawBall();
 	drawPaddle();
 	drawScore();
+	
+	//Draw lives
+	drawLives();
+	
 	//Draw the bricks
 	drawBricks();
 	
@@ -114,10 +121,22 @@ function draw() {
 				dy = -dy;
 			}
 			else {
+				Lives --;
+				if(!Lives) {
+				
+				//Add sound when games over
 				GAMEOVER_SOUND.play();
 				alert("GAME OVER");
 				document.location.reload();
 	}
+	else {
+		x = canvas.width/2;
+		y = canvas.height-30;
+		dx = 2;
+		dy = -2;
+		paddleX = (canvas.width-paddleWidth)/2;
+	}
+}
 	
 	if(rightPressed && paddleX < canvas.width-paddleWidth) {
 		paddleX += 7;
@@ -150,6 +169,7 @@ function keyUpHandler(e) {
 	}
 }
 
+//Add sound to mouse
 function mouseMoveHandler(e) {
 	var relativeX = e.clientX - canvas.offsetLeft;
 	if(relativeX > 0 && relativeX < canvas.width) {
@@ -169,6 +189,7 @@ function collisionDetection() {
 				score++;
 				SCORE_SOUND.play();
 				if(score == brickRowCount*brickColumnCount) {
+					//Add sound when you win the game
 					WINNNING_SOUND.play();
 					alert("YOU WIN, CONGRATULATIONS!");
 					document.location.reload();
@@ -186,6 +207,12 @@ function drawScore() {
 	document.getElementById("gamescore").innerHTML = "Score: "  + score;
 }
 
+function drawLives() {
+	ctx.font = "16px Arial";
+	ctx.fillStyle = "#0095DD";
+	ctx.fillText("Lives:" + Lives , canvas.width-65, 20);
+	document.getElementById("gamelives").innerHTML = "Lives: " + Lives;
+	}
 
 setInterval(draw, 10);
 
