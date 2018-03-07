@@ -41,31 +41,6 @@ function draw() {
 	ctx.closePath();
 }
 
-
-
-//Draw the bricks
-drawBricks();
-
-
-//This function draws the bricks
-function drawBricks() {
-	for(c=0; c<brickColumnCount; c++) {
-		for(r=0; r<brickRowCount; r++) {
-			if(
-			var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-			var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
-			bricks[c][r].x = brickX;
-			bricks[c][r].y = brickY;
-			ctx.beginPath();
-			ctx.rect(brickX, brickY, brickWidth,brickHeight);
-			ctx.fillStyle = "#0095DD";
-			ctx.fill();
-			ctx.closePath
-		}
-	}
-}
-
-
 function drawBall() {
 	ctx.beginPath();
 	ctx.arc(x, y, ballRadius, 0, Math.PI*2);
@@ -82,11 +57,38 @@ function drawPaddle() {
 	ctx.closePath();
 }
 
+//This function draws the bricks
+function drawBricks() {
+	for(c=0; c<brickColumnCount; c++) {
+		for(r=0; r<brickRowCount; r++) {
+		if(bricks[c][r].status == 1) {
+			var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+			var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+			bricks[c][r].x = brickX;
+			bricks[c][r].y = brickY;
+			ctx.beginPath();
+			ctx.rect(brickX, brickY, brickWidth,brickHeight);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.closePath
+			}
+		
+		}
+	}
+}
+
+
+
 function draw() {
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawBall();
 	drawPaddle();
+	//Draw the bricks
+	drawBricks();
+	
+	// Activate collision detection
+	collisionDetection();
 	
 	x += dx;
 	y += dy;
@@ -116,8 +118,10 @@ function draw() {
 
 }
 
-// Activate collision detection
-collisionDection();
+
+
+
+
 
 
 document.addEventListener("keydown", keyDownHandler, false);
@@ -141,7 +145,7 @@ function keyUpHandler(e) {
 	}
 }
 
-function collisionDection() {
+function collisionDetection() {
 	for(c=0; c<brickColumnCount; c++) {
 		for(r=0; r<brickRowCount; r++) {
 			var b = bricks[c][r];
