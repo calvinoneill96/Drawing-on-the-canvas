@@ -10,6 +10,9 @@ var leftPressed = false;
 var dx = 2
 var dy = -2
 
+//Counting the score
+var score = 0;
+
 //Setup some bricks
 var brickRowCount = 3;
 var brickColumnCount = 5;
@@ -84,6 +87,7 @@ function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawBall();
 	drawPaddle();
+	drawScore();
 	//Draw the bricks
 	drawBricks();
 	
@@ -118,12 +122,6 @@ function draw() {
 
 }
 
-
-
-
-
-
-
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -153,10 +151,18 @@ function collisionDetection() {
 				if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
 				dy = -dy;
 				b.status = 0;
+				score++;
 				}
 			}
 		}
 	}
+}
+
+function drawScore() {
+	ctx.font = "16px Arial";
+	ctx.fillStyle = "#0095DD";
+	ctx.fillText("Score: "+score, 8, 20);
+	document.getElementById("gamescore").innerHTML = "Score: "  + score;
 }
 
 
