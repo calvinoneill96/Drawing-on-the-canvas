@@ -22,6 +22,11 @@ var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
+//Game sounds
+var WINNNING_SOUND = new Audio('sounds/woohoo.wav');
+var SCORE_SOUND = new Audio('sounds/success.wav');
+var GAMEOVER_SOUND = new Audio('sounds/gameover.wav');
+
 //Hold the bricks in a two-dimensional array - think of it as rows and columns
 var bricks = [];
 for(c=0; c<brickColumnCount; c++) {
@@ -109,6 +114,7 @@ function draw() {
 				dy = -dy;
 			}
 			else {
+				GAMEOVER_SOUND.play();
 				alert("GAME OVER");
 				document.location.reload();
 	}
@@ -152,7 +158,9 @@ function collisionDetection() {
 				dy = -dy;
 				b.status = 0;
 				score++;
+				SCORE_SOUND.play();
 				if(score == brickRowCount*brickColumnCount) {
+					WINNNING_SOUND.play();
 					alert("YOU WIN, CONGRATULATIONS!");
 					document.location.reload();
 				}
