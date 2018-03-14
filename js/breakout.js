@@ -186,7 +186,7 @@ function collisionDetection() {
 				if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
 				dy = -dy;
 				b.status = 0;
-				score++;
+				score+=10;
 				SCORE_SOUND.play();
 				if(score == brickRowCount*brickColumnCount) {
 					//Add sound when you win the game
