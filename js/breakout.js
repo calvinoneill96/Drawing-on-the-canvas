@@ -17,10 +17,10 @@ var Lives = 3
 var score = 0;
 
 //Setup some bricks
-var brickRowCount = 3;
-var brickColumnCount = 5;
-var brickWidth = 75;
-var brickHeight = 20;
+var brickRowCount = 4;
+var brickColumnCount = 7;
+var brickWidth = 50;
+var brickHeight = 10;
 var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
