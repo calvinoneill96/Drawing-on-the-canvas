@@ -1,9 +1,12 @@
 //Setup the canvas
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
+// setup ball size
 var ballRadius = 5;
+// setup paddle height
 var paddleHeight = 10;
-var paddleWidth = 50;
+//Setup paddle width
+var paddleWidth = 70;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
@@ -51,7 +54,7 @@ function draw() {
 	ctx.fill();
 	ctx.closePath();
 }
-
+//Draw the ball
 function drawBall() {
 	ctx.beginPath();
 	ctx.arc(x, y, ballRadius, 0, Math.PI*2);
@@ -59,7 +62,7 @@ function drawBall() {
 	ctx.fill();
 	ctx.closePath();
 }
-
+//Draw the paddle
 function drawPaddle() {
 	ctx.beginPath();
 	ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
@@ -177,7 +180,7 @@ function mouseMoveHandler(e) {
 	}
 }
 
-
+// Impletment collision detection
 function collisionDetection() {
 	for(c=0; c<brickColumnCount; c++) {
 		for(r=0; r<brickRowCount; r++) {
@@ -199,14 +202,14 @@ function collisionDetection() {
 		}
 	}
 }
-
+//Draw the score
 function drawScore() {
 	ctx.font = "16px Arial";
 	ctx.fillStyle = "#0095DD";
 	ctx.fillText("Score: "+score, 8, 20);
 	document.getElementById("gamescore").innerHTML = "Score: "  + score;
 }
-
+//Draw lives
 function drawLives() {
 	ctx.font = "16px Arial";
 	ctx.fillStyle = "#0095DD";
