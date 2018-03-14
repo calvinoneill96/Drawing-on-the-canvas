@@ -1,9 +1,9 @@
 //Setup the canvas
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-var ballRadius = 10;
+var ballRadius = 5;
 var paddleHeight = 10;
-var paddleWidth = 75;
+var paddleWidth = 50;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
